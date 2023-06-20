@@ -2,7 +2,7 @@
 
 Repos containing artifacts for the SAP ABAP environment integration with Microsoft services.
 
-## Getting Started
+## Getting Started 🚀
 
 Setup ABAP Development tools using SAP's [onboarding guide](https://developers.sap.com/tutorials/abap-environment-trial-onboarding.html#146ad3ba-8f2e-454b-93f2-0bbd1dc0ae1f).
 
@@ -13,7 +13,7 @@ Choose between ABAP flavours for your integration journey:
 
 👩🏽‍🎓Learn more from the [👉Blog series](https://blogs.sap.com/2023/06/06/kick-start-your-sap-abap-platform-integration-journey-with-microsoft/)
 
-### Import artifacts
+### Import artifacts 📥
 
 - Power Automate flows: Use the provided zip file to import the flows into your environment.
 
@@ -21,12 +21,12 @@ Choose between ABAP flavours for your integration journey:
 
 - [Postman Collection](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/)
 
-### SAP Developer tutorials used
+### SAP Developer tutorials used 👩🏼‍🏫
 
 - [Expose a Standard Core Data Service for ABAP Environment](https://developers.sap.com/tutorials/abap-environment-business-service-provisioning.html)
 - [Create Behavior Definition for Managed Scenario](https://developers.sap.com/tutorials/abap-environment-behavior.html)
 
-## Aftermath
+## Aftermath😏
 
 Go blow some steam like a punk 😎
 
