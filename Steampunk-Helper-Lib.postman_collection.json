@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "6b0b564d-6329-485f-b880-0c9b336cafd7",
+		"name": "Steampunk-Helper-Lib",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8114323"
+	},
+	"item": [
+		{
+			"name": "Get Travel App metadata OData v2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"csrf-token\", pm.response.headers.get(\"x-csrf-token\"));\r",
+							"pm.collectionVariables.set(\"ETag\", pm.response.headers.get(\"ETag\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CSRF-Token",
+						"value": "Fetch",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{steampunk-domain}}.abap.eu20.hana.ondemand.com/sap/opu/odata/sap/ZUI_C_TRAVEL_M_100/$metadata",
+					"protocol": "https",
+					"host": [
+						"{{steampunk-domain}}",
+						"abap",
+						"eu20",
+						"hana",
+						"ondemand",
+						"com"
+					],
+					"path": [
+						"sap",
+						"opu",
+						"odata",
+						"sap",
+						"ZUI_C_TRAVEL_M_100",
+						"$metadata"
+					],
+					"query": [
+						{
+							"key": "$select",
+							"value": "FirstName,EMailAddress,CountryCode,City,to_Country/IsEuropeanUnionMember",
+							"disabled": true
+						},
+						{
+							"key": "$expand",
+							"value": "to_Country",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Travel Processor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"csrf-token\", pm.response.headers.get(\"x-csrf-token\"));\r",
+							"pm.collectionVariables.set(\"ETag\", pm.response.headers.get(\"ETag\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CSRF-Token",
+						"value": "Fetch",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{steampunk-domain}}.abap.eu20.hana.ondemand.com/sap/opu/odata/sap/ZUI_C_TRAVEL_M_100/TravelProcessor(guid'02d5290e-594c-1eda-9381-5057fd946624')?$format=json",
+					"protocol": "https",
+					"host": [
+						"{{steampunk-domain}}",
+						"abap",
+						"eu20",
+						"hana",
+						"ondemand",
+						"com"
+					],
+					"path": [
+						"sap",
+						"opu",
+						"odata",
+						"sap",
+						"ZUI_C_TRAVEL_M_100",
+						"TravelProcessor(guid'02d5290e-594c-1eda-9381-5057fd946624')"
+					],
+					"query": [
+						{
+							"key": "$select",
+							"value": "FirstName,EMailAddress,CountryCode,City,to_Country/IsEuropeanUnionMember",
+							"disabled": true
+						},
+						{
+							"key": "$expand",
+							"value": "to_Country",
+							"disabled": true
+						},
+						{
+							"key": "$format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update TravelProcessor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "X-CSRF-Token",
+						"value": "{{csrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "If-Match",
+						"value": "{{ETag}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Description\": \"UPDATED!\",\r\n    \"TotalPrice\": \"999\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{steampunk-domain}}.abap.eu20.hana.ondemand.com/sap/opu/odata/sap/ZUI_C_TRAVEL_M_100/TravelProcessor(guid'02d5290e-594c-1eda-9381-5057fd946624')",
+					"protocol": "https",
+					"host": [
+						"{{steampunk-domain}}",
+						"abap",
+						"eu20",
+						"hana",
+						"ondemand",
+						"com"
+					],
+					"path": [
+						"sap",
+						"opu",
+						"odata",
+						"sap",
+						"ZUI_C_TRAVEL_M_100",
+						"TravelProcessor(guid'02d5290e-594c-1eda-9381-5057fd946624')"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update TravelProcessor complete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-CSRF-Token",
+						"value": "{{csrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "If-Match",
+						"value": "{{ETag}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"__metadata\": {\r\n            \"id\": \"\",\r\n            \"uri\": \"\",\r\n            \"type\": \"\",\r\n            \"etag\": \"\"\r\n        },\r\n        \"TravelUUID\": \"02d5290e-594c-1eda-9381-5057fd946624\",\r\n        \"TravelID\": \"22\",\r\n        \"AgencyID\": \"70001\",\r\n        \"AgencyName\": \"Sunshine Travel\",\r\n        \"CustomerID\": \"77\",\r\n        \"CustomerName\": \"Neubasler\",\r\n        \"BeginDate\": \"/Date(1561334400000)/\",\r\n        \"EndDate\": \"/Date(1561680000000)/\",\r\n        \"TotalPrice\": \"999.00\",\r\n        \"CurrencyCode\": \"USD\",\r\n        \"TravelStatus\": \"A\",\r\n        \"Description\": \"UPDATED!\",\r\n        \"LastChangedAt\": \"/Date(1687250515904+0000)/\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{steampunk-domain}}.abap.eu20.hana.ondemand.com/sap/opu/odata/sap/ZUI_C_TRAVEL_M_100/TravelProcessor(guid'02d5290e-594c-1eda-9381-5057fd946624')",
+					"protocol": "https",
+					"host": [
+						"{{steampunk-domain}}",
+						"abap",
+						"eu20",
+						"hana",
+						"ondemand",
+						"com"
+					],
+					"path": [
+						"sap",
+						"opu",
+						"odata",
+						"sap",
+						"ZUI_C_TRAVEL_M_100",
+						"TravelProcessor(guid'02d5290e-594c-1eda-9381-5057fd946624')"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "EXCELODATAUSER",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "steampunk-domain",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "csrf-token",
+			"value": ""
+		},
+		{
+			"key": "ETag",
+			"value": ""
+		}
+	]
+}
