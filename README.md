@@ -13,6 +13,14 @@ Choose between ABAP flavours for your integration journey:
 
 👩🏽‍🎓Learn more from the [👉Blog series](https://blogs.sap.com/2023/06/06/kick-start-your-sap-abap-platform-integration-journey-with-microsoft/)
 
+## Import artifacts
+
+- Power Automate flows: Use the provided zip file to import the flows into your environment.
+
+<img src="/img/steampunk-excel-flow-import.png" alt="Screenshot of legacy import experience"  width="30%">
+
+- [Postman Collection](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/)
+
 ## SAP Developer tutorials used
 
 - [Expose a Standard Core Data Service for ABAP Environment](https://developers.sap.com/tutorials/abap-environment-business-service-provisioning.html)
