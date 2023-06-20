@@ -4,12 +4,19 @@ Repos containing artifacts for the SAP ABAP environment integration with Microso
 
 ## Getting Started
 
-Choose between ABAP flavours:
+Setup ABAP Development tools using SAP's [onboarding guide](https://developers.sap.com/tutorials/abap-environment-trial-onboarding.html#146ad3ba-8f2e-454b-93f2-0bbd1dc0ae1f).
+
+Choose between ABAP flavours for your integration journey:
 
 - SAP BTP ABAP Environment (aka. [Steampunk](https://discovery-center.cloud.sap/serviceCatalog/abap-environment?region=all&tab=feature))
 - SAP S/4HANA Cloud  – ABAP Environment (aka. [Embedded Steampunk](https://blogs.sap.com/2022/10/25/how-to-use-embedded-steampunk-in-sap-s-4hana-cloud-private-edition-and-in-on-premise-the-new-abap-extensibility-guide/))
 
 👩🏽‍🎓Learn more from the [👉Blog series](https://blogs.sap.com/2023/06/06/kick-start-your-sap-abap-platform-integration-journey-with-microsoft/)
+
+## SAP Developer tutorials used
+
+- [Expose a Standard Core Data Service for ABAP Environment](https://developers.sap.com/tutorials/abap-environment-business-service-provisioning.html)
+- [Create Behavior Definition for Managed Scenario](https://developers.sap.com/tutorials/abap-environment-behavior.html)
 
 Go blow some steam like a punk 😎
 
