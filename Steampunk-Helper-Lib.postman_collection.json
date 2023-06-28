@@ -243,6 +243,150 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Bookings OData v4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"csrf-token\", pm.response.headers.get(\"x-csrf-token\"));\r",
+							"pm.collectionVariables.set(\"ETag\", pm.response.headers.get(\"ETag\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "BOOKING_APPROVER",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CSRF-Token",
+						"value": "Fetch",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{steampunk-domain}}.abap.eu20.hana.ondemand.com/sap/opu/odata4/sap/zevent_ui_booking_04_100/srvd/sap/zevent_ui_booking_100/0001/BOOKING(TravelID='77777',IsActiveEntity=true)",
+					"protocol": "https",
+					"host": [
+						"{{steampunk-domain}}",
+						"abap",
+						"eu20",
+						"hana",
+						"ondemand",
+						"com"
+					],
+					"path": [
+						"sap",
+						"opu",
+						"odata4",
+						"sap",
+						"zevent_ui_booking_04_100",
+						"srvd",
+						"sap",
+						"zevent_ui_booking_100",
+						"0001",
+						"BOOKING(TravelID='77777',IsActiveEntity=true)"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Booking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"csrf-token\", pm.response.headers.get(\"x-csrf-token\"));\r",
+							"pm.collectionVariables.set(\"ETag\", pm.response.headers.get(\"ETag\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "BOOKING_APPROVER",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "X-CSRF-Token",
+						"value": "{{csrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "If-Match",
+						"value": "{{ETag}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"OverallStatus\":\"A\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{steampunk-domain}}.abap.eu20.hana.ondemand.com/sap/opu/odata4/sap/zevent_ui_booking_04_100/srvd/sap/zevent_ui_booking_100/0001/BOOKING(TravelID='1',IsActiveEntity=true)",
+					"protocol": "https",
+					"host": [
+						"{{steampunk-domain}}",
+						"abap",
+						"eu20",
+						"hana",
+						"ondemand",
+						"com"
+					],
+					"path": [
+						"sap",
+						"opu",
+						"odata4",
+						"sap",
+						"zevent_ui_booking_04_100",
+						"srvd",
+						"sap",
+						"zevent_ui_booking_100",
+						"0001",
+						"BOOKING(TravelID='1',IsActiveEntity=true)"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
