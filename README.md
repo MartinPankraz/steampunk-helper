@@ -6,15 +6,15 @@ Repos containing artifacts for the SAP ABAP environment integration with Microso
 
 **SAP BTP ABAP Environment (aka. [Steampunk](https://discovery-center.cloud.sap/serviceCatalog/abap-environment?region=all&tab=feature))**
 
-| scenario | description |
-| --- | --- |
-| Part 1 – [Consume SAP RAP Business Objects from Microsoft Excel🔗](https://blogs.sap.com/2023/06/20/sap-btp-abap-environment-integration-journey-with-microsoft-part-1/) | Learn how to expose an OData service from a RAP object and execute “live” request from Excel. |
+| scenario | blog link | description |
+| --- | --- | --- |
+| Part 1 – [Consume SAP RAP Business Objects from Microsoft Excel](./steampunk-part1/README.md) | [🔗](https://blogs.sap.com/2023/06/20/sap-btp-abap-environment-integration-journey-with-microsoft-part-1/) | Learn how to expose an OData service from a RAP object and execute “live” request from Excel. |
 
 **SAP S/4HANA Cloud  – ABAP Environment (aka. [Embedded Steampunk](https://blogs.sap.com/2022/10/25/how-to-use-embedded-steampunk-in-sap-s-4hana-cloud-private-edition-and-in-on-premise-the-new-abap-extensibility-guide/))**
 
-| scenario | description |
-| --- | --- |
-| Part 1 – Approve SAP process🔗 | Directly approve SAP processes from Microsoft Teams |
+| scenario | blog link | description |
+| --- | --- | --- |
+| Part 1 – [Approve SAP process](./embedded-steampunk-part1/README.md) | 🔗 | Directly approve SAP processes from Microsoft Teams |
 
 ## Getting Started 🚀
 
