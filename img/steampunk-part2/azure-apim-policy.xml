@@ -1,0 +1,72 @@
+<!--
+    This policy sample demonstrates how to respond to Power Query request to support the "Organizational Account" login flow for a downstream API.
+
+    Replace the audience 'https://your-custom-apim-domain' in line 37 with your own
+
+    References:
+        Expected response from Power Query docuementation:
+            https://docs.microsoft.com/power-query/connectorauthentication#supported-workflow
+        
+        How to map jwt token from AAD obtained via Power Query for SAP OData request and SAP OAuth Server
+            https://github.com/Azure/api-management-policy-snippets/blob/master/examples/Request%20OAuth2%20access%20token%20from%20SAP%20using%20AAD%20JWT%20token.xml
+
+    IMPORTANT:
+        - Power Query requires a verifiable resource for the login process. Hence a custom domain for APIM needs to be configured.
+        - {{AADTenantID}} needs to be maintained via an APIM Named Value configuration.
+        - a672d62c-fc7b-4e81-a576-e60dc46e951d is the default client id for Power Query. It should be verified from the documentation: https://docs.microsoft.com/power-query/connectorauthentication#supported-workflow
+        - Avoid http 307 redirect issues by enforcing the trailing slash at the root path '/' with the rewrite-uri policy. See here for reference:
+            https://learn.microsoft.com/azure/api-management/sap-api#complete-api-configuration
+-->
+<policies>
+    <inbound>
+        <base />
+        <choose>
+            <!-- if empty Bearer assume Power Query signin request as described here: https://docs.microsoft.com/power-query/connectorauthentication#supported-workflow -->
+            <when condition="@(context.Request.Headers.GetValueOrDefault("Authorization","").Trim().Equals("Bearer"))">
+                <return-response>
+                    <set-status code="401" reason="Unauthorized" />
+                    <set-header name="WWW-Authenticate" exists-action="override">
+                        <value>Bearer authorization_uri=https://login.microsoftonline.com/{{AADTenantId}}/oauth2/v2.0/authorize?response_type=code%26client_id=a672d62c-fc7b-4e81-a576-e60dc46e951d</value>
+                    </set-header>
+                </return-response>
+            </when>
+            <otherwise>
+                <validate-jwt header-name="Authorization" failed-validation-httpcode="401" require-scheme="Bearer">
+                    <openid-config url="https://login.microsoftonline.com/{{AADTenantId}}/.well-known/openid-configuration" />
+                    <audiences>
+                        <audience>https://your-custom-apim-domain</audience>
+                    </audiences>
+                    <issuers>
+                        <issuer>https://sts.windows.net/{{AADTenantId}}/</issuer>
+                    </issuers>
+                    <required-claims>
+                        <claim name="scp" match="all" separator=" ">
+                            <value>user_impersonation</value>
+                        </claim>
+                    </required-claims>
+                </validate-jwt>
+                <!-- After successfull JWT validation drop Authentication header and add client certificate for SAP BTP ABAP environment -->
+                <set-header name="Authorization" exists-action="delete" />
+                <!-- drop unsupported response encoding "br" if present -->
+                <set-header name="Accept-Encoding" exists-action="override">
+                    <value>gzip, deflate</value>
+                </set-header>
+                <!-- Select client cert from Azure Key Vault or Azure APIM certificate store by id -->
+                <authentication-certificate certificate-id="apim-client-cert-steampunk" />
+            </otherwise>
+        </choose>
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+        <!-- ensure downstream api metadata matches apim caller domain in Power Query
+             Drop *.Path if SAP paths are mapped 1:1 from APIM. Find other URI components if needed here:
+             https://learn.microsoft.com/azure/api-management/api-management-policy-expressions#ref-context-request
+        -->
+        <find-and-replace from="@(context.Api.ServiceUrl.Host + context.Api.ServiceUrl.Path)" to="@(context.Request.OriginalUrl.Host + context.Api.Path)" />
+    </outbound>
+    <on-error>
+    </on-error>
+</policies>
