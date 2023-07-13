@@ -51,7 +51,9 @@
                 <set-header name="Accept-Encoding" exists-action="override">
                     <value>gzip, deflate</value>
                 </set-header>
-                <!-- Select client cert from Azure Key Vault or Azure APIM certificate store by id -->
+                <!-- Select client cert from Azure Key Vault or Azure APIM certificate store by id
+                     https://learn.microsoft.com/en-us/azure/api-management/authentication-certificate-policy
+                -->
                 <authentication-certificate certificate-id="apim-client-cert-steampunk" />
             </otherwise>
         </choose>
