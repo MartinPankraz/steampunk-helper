@@ -6,6 +6,8 @@
 
 Defined GraphQL endpoint: `https://your-own-azure-apim-domain/graphql/to/sap/odata`
 
+- [Postman Collection with GraphQL queries](https://raw.githubusercontent.com/MartinPankraz/steampunk-helper/main/Steampunk-Helper-Lib.postman_collection.json) using [import feature](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/).
+
 - [GraphQL schema for SAP Booking OData service](./booking-schema.graphql)
 - [Azure APIM Policy for OData service CSRF token and ETag handling](./booking-odata-api-policy.xml)
 - [GraphQL resolver for OData Booking service GET request](./booking-odata-query-resolver.xml)
