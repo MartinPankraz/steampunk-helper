@@ -387,6 +387,104 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Query Bookings via GraphQL using Azure APIM",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "APIMDEMO",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getBooking ($travelId: String!){\r\n    getBooking(TravelID: $travelId) {\r\n        Description\r\n        OverallStatus\r\n        TravelID\r\n    }\r\n}",
+						"variables": "{\r\n    \"travelId\":\"10000\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://{{azure-apim-host}}/graphql/to/sap/odata",
+					"protocol": "https",
+					"host": [
+						"{{azure-apim-host}}"
+					],
+					"path": [
+						"graphql",
+						"to",
+						"sap",
+						"odata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Bookings via GraphQL using Azure APIM",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "APIMDEMO",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation($travelId: ID!) {\r\n\tupdateBooking(input: { TravelID: $travelId, Description: \"Vacation needed!\", OverallStatus: \"A\" })\r\n}",
+						"variables": "{\r\n    \"travelId\":\"10000\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://{{azure-apim-host}}/graphql/to/sap/odata",
+					"protocol": "https",
+					"host": [
+						"{{azure-apim-host}}"
+					],
+					"path": [
+						"graphql",
+						"to",
+						"sap",
+						"odata"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -437,6 +535,16 @@
 		{
 			"key": "ETag",
 			"value": ""
+		},
+		{
+			"key": "azure-apim-host",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Ocp-Apim-Subscription-Key",
+			"value": "",
+			"type": "string"
 		}
 	]
 }

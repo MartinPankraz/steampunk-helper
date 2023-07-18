@@ -1,0 +1,38 @@
+<!--
+    GraphQL Resolver for SAP ABAP Cloud OData API. See SAP Community blog series to learn more: https://blogs.sap.com/2023/06/06/kick-start-your-sap-abap-platform-integration-journey-with-microsoft/
+
+    Find additional SAP policies for SAP token caching, SAP Principal Propagation and CSRF token handling here: https://github.com/Azure/api-management-policy-snippets/blob/master/examples/Request%20OAuth2%20access%20token%20from%20SAP%20using%20AAD%20JWT%20token.xml
+-->
+<http-data-source>
+	<http-request>
+		<set-method>PATCH</set-method>
+		<set-url>@($"https://[your-Azure-APIM-domain]/sap/opu/odata/sap/ZEVENT_UI_BOOKING_ODATA_V2/BOOKING(TravelID='{context.GraphQL.Arguments["input"]["TravelID"]}',IsActiveEntity=true)")</set-url>
+		<set-header name="Accept-Encoding" exists-action="override">
+			<value>gzip, deflate</value>
+		</set-header>
+		<set-header name="Authorization" exists-action="override">
+			<value>@(context.Request.Headers.GetValueOrDefault("Authorization"))</value>
+		</set-header>
+		<set-body template="liquid">
+        {
+            {% if context.GraphQL.Arguments["input"]["Description"] != "" %}
+                "Description": "{{context.GraphQL.Arguments["input"]["Description"]}}",
+            {% endif %}
+            
+            {% if context.GraphQL.Arguments["input"]["OverallStatus"] != "" %}
+                "OverallStatus": "{{context.GraphQL.Arguments["input"]["OverallStatus"]}}"
+            {% endif %}
+        }         
+        </set-body>
+    </http-request>
+    <http-response>
+        <!-- return state for OData request -->
+		<set-body template="liquid">
+            {% if context.Response.StatusCode == 204 %}
+            true
+            {% else %}
+            false
+            {% endif %}
+        </set-body>
+	</http-response>
+</http-data-source>

@@ -1,0 +1,26 @@
+type BOOKING {
+  TravelID: String!
+  Description: String
+  OverallStatus: String
+}
+
+input CreatedBooking { 
+    TravelID: ID! 
+    Description: String
+    OverallStatus: String
+}
+
+input UpdatedBooking { 
+    TravelID: ID! 
+    Description: String
+    OverallStatus: String
+}
+
+type Query {
+  getBooking(TravelID: String!): BOOKING
+}
+
+type Mutation {
+  createBooking(input: CreatedBooking): BOOKING
+  updateBooking(input: UpdatedBooking): Boolean
+}
