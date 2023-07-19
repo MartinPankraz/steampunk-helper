@@ -15,14 +15,14 @@
 		</set-header>
 		<set-body template="liquid">
         {
-            {% if context.GraphQL.Arguments["input"]["Description"] != "" %}
-                "Description": "{{context.GraphQL.Arguments["input"]["Description"]}}",
+            {% if body.arguments.input.Description != null %}
+            "Description": "{{ body.arguments.input.Description }}",
             {% endif %}
-            
-            {% if context.GraphQL.Arguments["input"]["OverallStatus"] != "" %}
-                "OverallStatus": "{{context.GraphQL.Arguments["input"]["OverallStatus"]}}"
+
+            {% if body.arguments.input.OverallStatus != null %}
+            "OverallStatus": "{{ body.arguments.input.OverallStatus }}"
             {% endif %}
-        }         
+        }  
         </set-body>
     </http-request>
     <http-response>
