@@ -86,20 +86,24 @@ CLASS LCL_HANDLER IMPLEMENTATION.
               error        = error
           ).
 
-        CATCH zcx_peng_azoai_sdk_exception INTO DATA(ex). " MSPENG:Azure Open AI ABAP SDK Exception
-*          MESSAGE ex TYPE 'I'.
-      ENDTRY.
+        if error is initial.
 
-    DATA update_line TYPE STRUCTURE FOR UPDATE zevent_r_bookingtp_100\\booking.
-    Data update type table for update zevent_r_bookingtp_100\\booking.
+            DATA update_line TYPE STRUCTURE FOR UPDATE zevent_r_bookingtp_100\\booking.
+            Data update type table for update zevent_r_bookingtp_100\\booking.
+            clear update_line.
 
-    "Iterate through individual booking fields to prepare write back structure using transaction key
-    Loop at Booking into data(mynewbooking).
-       update_line-%tky = mynewbooking-%tky.
-       "Set new Description from Azure OpenAI generated text
-       update_line-Description = chatcompl_output-choices[ 1 ]-message-content.
-       append update_line to update.
-    endloop.
+           update_line-%tky = mybooking-%tky.
+           "Set new Description from Azure OpenAI generated text
+           update_line-Description = chatcompl_output-choices[ 1 ]-message-content.
+           append update_line to update.
+
+        else.
+          APPEND VALUE #( %tky = mybooking-%tky
+                          %msg = new_message_with_text(
+                                   severity = if_abap_behv_message=>severity-information
+                                   text     = 'error' )
+                        ) TO reported-booking.
+        endif.
     " write back the AI generated Description to newly created booking before final save :-)
     MODIFY ENTITIES OF zevent_r_bookingtp_100 IN LOCAL MODE
       ENTITY booking
@@ -108,6 +112,14 @@ CLASS LCL_HANDLER IMPLEMENTATION.
     REPORTED DATA(update_reported)."collect issues into report
 
     reported = CORRESPONDING #( DEEP update_reported )."report any issues back to UI
+
+    CATCH zcx_peng_azoai_sdk_exception INTO DATA(ex). " MSPENG:Azure Open AI ABAP SDK Exception
+          APPEND VALUE #( %tky = mybooking-%tky
+                          %msg = new_message_with_text(
+                                   severity = if_abap_behv_message=>severity-information
+                                   text     = ex->get_text( ) )
+                        ) TO reported-booking.
+  ENDTRY.
 
   ENDMETHOD.
 ENDCLASS.
