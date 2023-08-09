@@ -2,7 +2,7 @@
 
 < 🏡[home](../README.md)
 
-<img src="../img/embedded-steampunk-openai-overview.png" alt="integration architecture drawing" width="600px"/>
+<img src="../img/embedded-steampunk-openai-architecture.png" alt="integration architecture drawing" width="600px"/>
 
 ## Prerequisites
 
