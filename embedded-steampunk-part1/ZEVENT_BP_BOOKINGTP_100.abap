@@ -2,6 +2,9 @@
 * Generated class from SAP Developer tutorial step 7:
 * https://developers.sap.com/tutorials/abap-environment-create-s4hana-rap-business-events.html#01eeb70f-6783-40bc-bfbf-ba229cafd2c5
 * save_modified overriden with http client to call Microsoft APIs
+* 
+* Applicable only to BTP ABAP environment!!!
+*
 **********************************************************************
 CLASS LHC_BOOKING DEFINITION INHERITING FROM CL_ABAP_BEHAVIOR_HANDLER.
   PRIVATE SECTION.

@@ -17,6 +17,7 @@ Repos containing artifacts for the SAP ABAP environment integration with Microso
 | scenario | blog link | description |
 | --- | --- | --- |
 | Part 1 – [Approve SAP process](./embedded-steampunk-part1) | 🔗 | Directly approve SAP processes from Microsoft Teams |
+| Part 2 – [Automatically generate a meaningful Booking request description on creation](./embedded-steampunk-part2) | 🔗 | See the [Azure OpenAI service](https://learn.microsoft.com/azure/ai-services/openai/overview) in action enhancing your ERP product create process. The [Microsoft AI SDK for SAP ABAP](https://microsoft.github.io/aisdkforsapabap/) gets you integrated seamlessly. |
 
 ## Getting Started 🚀
 
