@@ -18,6 +18,11 @@
 - [CDS view behavior definition](./ZEVENT_R_BOOKINGTP_100.abap)
 - [CDS projection view data definition](./ZEVENT_C_BOOKINGTP_100.abap)
 
+(Optional - use only if not using AI SDK for SAP, or if API allow listing is required)
+
+- [ABAP Cloud Wrapper class for cl_http_client](./zcl_outbound_provider_http.abap)
+- [SAP docs for the wrapper class approach](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/cef1ada754154d11b5701ab60e6ab412.html)
+
 ## SAP Developer tutorials used 👩🏼‍🏫
 
 - [How to Create RAP Business Events in an On-Premise system](https://developers.sap.com/tutorials/abap-environment-create-s4hana-rap-business-events.html)
