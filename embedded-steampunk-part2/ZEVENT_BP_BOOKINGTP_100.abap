@@ -46,7 +46,7 @@ CLASS LCL_HANDLER IMPLEMENTATION.
 
           "Apply few-shot samples to using past booking entries to set the prompt context for the GPT model
           "https://learn.microsoft.com/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions#few-shot-learning
-          select * from zevent_c_bookingtp_100 into table @data(lt_booking).
+          select * from zevent_c_bookingtp_100 into table @data(lt_booking) up to 5 ROWS.
 
           Loop at lt_booking into data(wa_booking).
             APPEND INITIAL LINE TO chatcompl_input-messages ASSIGNING <fs_message>.
