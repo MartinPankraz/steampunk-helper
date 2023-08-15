@@ -6,7 +6,13 @@
 
 ## Prerequisites
 
-- Azure OpenAI service instance. Learn how to deploy [here.](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource)
+[Microsoft Learn getting started guide for Azure OpenAI](https://microsoftlearning.github.io/mslearn-openai/Instructions/Labs/01-get-started-azure-openai.html)
+
+[Prompt Engineering basics](https://github.com/microsoft/OpenAIWorkshop/tree/main/scenarios/prompt_engineering)
+
+### Deployment steps
+
+- Azure OpenAI service instance. See how to deploy [here.](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource)
 - [Deploy](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?#deploy-a-model) your GPT model. For this tutorial `gpt-35-turbo` (model version 0301) was used.
 - Maintain your Azure OpenAI service instance credentials in the [Azure OpenAI getSDK ABAP method](ZEVENT_BP_BOOKINGTP_100.abap#L34) section of the class. Find your API key and endpoint in the [Azure portal](https://portal.azure.com/?#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/OpenAI). Navigate to section `Resource Management > Keys and Endpoint > Key 1`
 - Consider [private virtual network access](https://learn.microsoft.com/azure/ai-services/cognitive-services-virtual-networks) for both your SAP S4/HANA Cloud on Azure and Azure OpenAI service instance. Navigate to `Resource Management > Networking > Firewalls and virtual networks` in the Azure portal and verify presence of the virtual network where your SAP lives.
