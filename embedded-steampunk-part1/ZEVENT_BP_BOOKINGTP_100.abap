@@ -36,9 +36,9 @@ CLASS lcl_event_handler IMPLEMENTATION.
     IF create IS NOT INITIAL.
 
 ***** get destination for http client by com arrangement in steampunk
-      * DATA(lo_destination) = cl_http_destination_provider=>create_by_comm_arrangement(
-      *                             comm_scenario  = 'Your Comm Scneario'
-      *                             service_id     = 'Your Service ID'
+      " DATA(lo_destination) = cl_http_destination_provider=>create_by_comm_arrangement(
+      "                             comm_scenario  = 'Your Comm Scneario'
+      "                             service_id     = 'Your Service ID'
 
 ***** Setup http request to Azure Logic Apps directly when not using comm arrangement above.
 ***** Check the blog series for details on how to protect the Logic Apps endpoint with OAuth2/OIDC or
