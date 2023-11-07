@@ -11,6 +11,7 @@ Repos containing artifacts for the SAP ABAP environment integration with Microso
 | Part 1 – [Consume SAP RAP Business Objects from Microsoft Excel](./steampunk-part1) | [🔗](https://blogs.sap.com/2023/06/20/sap-btp-abap-environment-integration-journey-with-microsoft-part-1/) | Learn how to expose an OData service from a RAP object and execute “live” request from Excel. |
 | Part 2 - [Govern your ABAP cloud APIs with Azure API Management](./steampunk-part2) | [🔗](https://blogs.sap.com/2023/07/14/sap-btp-abap-environment-integration-journey-with-microsoft-part-2-using-api-management/) | Integrate your ABAP backed APIs into your general API Management umbrella with production ready X.509 client certificate authentication |
 | Part 3 - [Enable GraphQL for your RAP enabled OData services](./steampunk-part3) | [🔗](https://blogs.sap.com/2023/07/20/sap-btp-abap-environment-integration-journey-with-microsoft-part-3/) | Uplevel your SAP app integration using ABAP Cloud APIs with GraphQL. |
+| Part 4 - [Store your ABAP Cloud data exports in Azure Blob Storage](./steampunk-part4) | [🔗todo]() | Since the days of casually saving ABAP data dumps to the application server discs are gone, learn how to move to Azure Blob storage instead. |
 
 **SAP S/4HANA Cloud  – ABAP Environment (aka. [Embedded Steampunk](https://blogs.sap.com/2022/10/25/how-to-use-embedded-steampunk-in-sap-s-4hana-cloud-private-edition-and-in-on-premise-the-new-abap-extensibility-guide/))**
 
