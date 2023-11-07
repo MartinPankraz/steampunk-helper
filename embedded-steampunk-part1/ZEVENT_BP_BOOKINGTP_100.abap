@@ -35,7 +35,12 @@ CLASS lcl_event_handler IMPLEMENTATION.
 ***** Act on booking create action. Use update, delete, etc. for alternate behavior.
     IF create IS NOT INITIAL.
 
-***** Setup http request to Azure Logic Apps.
+***** get destination for http client by com arrangement in steampunk
+      " DATA(lo_destination) = cl_http_destination_provider=>create_by_comm_arrangement(
+      "                             comm_scenario  = 'Your Comm Scneario'
+      "                             service_id     = 'Your Service ID'
+
+***** Setup http request to Azure Logic Apps directly when not using comm arrangement above.
 ***** Check the blog series for details on how to protect the Logic Apps endpoint with OAuth2/OIDC or
 ***** direct calls to Microosft Graph API with ABAP SDK for Azure
       DATA(dest) = cl_http_destination_provider=>create_by_url(
