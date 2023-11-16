@@ -23,3 +23,4 @@
 ## SAP Developer tutorials used 👩🏼‍🏫
 
 - [Create Your First ABAP Cloud Console Application](https://developers.sap.com/tutorials/abap-environment-console-application.html)
+- [Call an External API and Parse the Response in SAP BTP ABAP Environment](https://developers.sap.com/tutorials/abap-environment-external-api.html)

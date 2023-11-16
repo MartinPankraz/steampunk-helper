@@ -279,12 +279,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "",
+							"value": "B$Wjr%@o+sI5,gB=Uj5p",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "BOOKING_APPROVER",
+							"value": "EXCELODATAUSER",
 							"type": "string"
 						}
 					]
@@ -502,7 +502,75 @@
 			"response": []
 		},
 		{
-			"name": "PUT Azure Blob from steampunk",
+			"name": "Get Entra ID token for Azure Blob Storage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(pm.info.requestName, () => {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody('error');\r",
+							"});\r",
+							"pm.collectionVariables.set(\"EntraIdBearerToken\", pm.response.json().access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{EntraIDClientSecret}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{EntraIDClientId}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "https://storage.azure.com/.default",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://login.microsoftonline.com/{{EntraIDTenantId}}/oauth2/v2.0/token",
+					"protocol": "https",
+					"host": [
+						"login",
+						"microsoftonline",
+						"com"
+					],
+					"path": [
+						"{{EntraIDTenantId}}",
+						"oauth2",
+						"v2.0",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Azure Blob from steampunk via SAS",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -543,6 +611,94 @@
 							"key": "{{AzureBlobSAS}}",
 							"value": null
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Azure Blob from steampunk via Entra",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-ms-blob-type",
+						"value": "BlockBlob",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{EntraIdBearerToken}}",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-version",
+						"value": "2023-08-03",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"key\":\"hello Azure world from SAP steampunk!\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{AzureStorageAccountName}}.blob.core.windows.net/{{AzureBlobContainerName}}/{{AzureBlobName}}",
+					"protocol": "https",
+					"host": [
+						"{{AzureStorageAccountName}}",
+						"blob",
+						"core",
+						"windows",
+						"net"
+					],
+					"path": [
+						"{{AzureBlobContainerName}}",
+						"{{AzureBlobName}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Azure Blob from steampunk via Entra ID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-ms-version",
+						"value": "2023-08-03",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{EntraIdBearerToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{AzureStorageAccountName}}.blob.core.windows.net/{{AzureBlobContainerName}}/{{AzureBlobName}}",
+					"protocol": "https",
+					"host": [
+						"{{AzureStorageAccountName}}",
+						"blob",
+						"core",
+						"windows",
+						"net"
+					],
+					"path": [
+						"{{AzureBlobContainerName}}",
+						"{{AzureBlobName}}"
 					]
 				}
 			},
@@ -625,6 +781,26 @@
 		},
 		{
 			"key": "AzureBlobSAS",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "EntraIDTenantId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "EntraIDClientId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "EntraIDClientSecret",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "EntraIdBearerToken",
 			"value": "",
 			"type": "string"
 		}
